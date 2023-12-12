@@ -1,7 +1,7 @@
 ---
 # This workflow integrates ShiftLeft NG SAST with GitHub
 # Visit https://docs.shiftleft.io for help
-name: ShiftLeft
+name: QwietAI
 
 on:
   pull_request:
@@ -17,8 +17,8 @@ jobs:
         go-version: '1.20'
     - name: Build
       run: |
-        go build ./...
-    - name: Download ShiftLeft CLI
+        go build -o app ./cmd/std
+    - name: Download QwietAI CLI
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl
     - name: Extract branch name
@@ -30,7 +30,7 @@ jobs:
         ${GITHUB_WORKSPACE}/sl --version
         pwd
         ls
-        ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app go-test-bench --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --go $(pwd)
+        SHIFTLEFT_SBOM_GENERATOR=2 ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app go-test-bench --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --go $(pwd)
       env:
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}
         SHIFTLEFT_API_HOST: www.shiftleft.io

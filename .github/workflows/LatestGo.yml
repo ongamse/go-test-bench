@@ -52,7 +52,7 @@ jobs:
         export SL_CPG_OPTS="-J-Xms2g -J-Xmx7g"
         export NODE_OPTIONS="--max_old_space_size=4096"
         echo $SL_CPG_OPTS
-        ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app go-test-bench --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --go ./cmd
+        ${GITHUB_WORKSPACE}/sl analyze --strict --wait --app go-test-bench --tag branch=${{ github.head_ref || steps.extract_branch.outputs.branch }} --go ./cmd/std
       env:
         NODE_OPTIONS: "--max_old_space_size=4096"
         SHIFTLEFT_ACCESS_TOKEN: ${{ secrets.SHIFTLEFT_ACCESS_TOKEN }}

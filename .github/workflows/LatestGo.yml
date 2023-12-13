@@ -45,7 +45,7 @@ jobs:
     - name: Go Build 
       shell: bash
       run: |
-        go build -o app ./cmd/go-swagger
+        go build ./cmd/gin
 
     - name: NextGen Static Analysis
       run: | 

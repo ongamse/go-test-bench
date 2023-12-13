@@ -17,7 +17,6 @@ jobs:
         go-version: '1.20'
     - name: Build
       run: |
-        #go build -o app ./cmd/std
         go build ./...
     - name: Download QwietAI CLI
       run: |

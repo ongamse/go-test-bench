@@ -9,16 +9,18 @@ on:
 
 jobs:
   NextGen-Static-Analysis:
+build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - name: Set up Go
+      uses: actions/setup-go@v4
       with:
-        go-version: '1.18.x'
+        go-version: '1.20'
     - name: Build
       run: go build -v ./...
-    - name: Install dependencies
-      run: go test
+    - name: Test
+      run: go test -v ./...
     - name: Download QwietAI CLI
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl

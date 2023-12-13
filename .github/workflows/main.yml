@@ -12,16 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v4
       with:
-        go-version: '1.16'
+        go-version: '1.18.x'
+    - name: Install dependencies
+      run: go get .
     - name: Build
-      run: |
-        export GOROOT=/usr/local/go
-        export PATH=${GOROOT}/bin:${PATH}
-        export GOPATH=$HOME/go
-        export PATH=${GOPATH}/bin:${PATH}
-        go build ./...
+      run: go build -v ./...
     - name: Download QwietAI CLI
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl

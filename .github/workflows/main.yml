@@ -15,10 +15,10 @@ jobs:
     - uses: actions/setup-go@v4
       with:
         go-version: '1.18.x'
-    - name: Install dependencies
-      run: go get .
     - name: Build
       run: go build -v ./...
+    - name: Install dependencies
+      run: go test
     - name: Download QwietAI CLI
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl

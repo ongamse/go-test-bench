@@ -17,7 +17,8 @@ jobs:
         go-version: '1.20'
     - name: Build
       run: |
-        go build -o app ./cmd/std
+        #go build -o app ./cmd/std
+        go build ./...
     - name: Download QwietAI CLI
       run: |
         curl https://cdn.shiftleft.io/download/sl > ${GITHUB_WORKSPACE}/sl && chmod a+rx ${GITHUB_WORKSPACE}/sl

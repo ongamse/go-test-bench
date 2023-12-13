@@ -17,6 +17,10 @@ jobs:
         go-version: '1.16'
     - name: Build
       run: |
+        export GOROOT=/usr/local/go
+        export PATH=${GOROOT}/bin:${PATH}
+        export GOPATH=$HOME/go
+        export PATH=${GOPATH}/bin:${PATH}
         go build ./...
     - name: Download QwietAI CLI
       run: |
